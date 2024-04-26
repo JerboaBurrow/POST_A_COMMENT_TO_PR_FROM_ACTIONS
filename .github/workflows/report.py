@@ -17,9 +17,10 @@ for file in json.load(open('tarpaulin-report.json'))['files']:
     
 entries = sorted(entries, key = lambda x: x[1])
 
-print(f"```\nTotal coverage {round(overall/len(entries),2)} %")
-print("_"*max_size)
+output = f"```\nTotal coverage {round(overall/len(entries),2)} %\n"
+output += "_"*max_size
 for entry in entries:
     pad = " "*(max_size-len(entry[0]))
-    print(entry[0]+pad+" | "+str(entry[1]) + " %")
-print("_"*max_size+"\n```")
+    output += "\n"+entry[0]+pad+" | "+str(entry[1]) + " %"
+output += "\n_"*max_size+"\n```"
+print(output)
