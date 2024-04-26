@@ -23,7 +23,6 @@ jobs:
     - name: Notify coverage
       uses: actions/github-script@v7
       with:
-        run: echo $SUMMARY
         script: |
           const { SUMMARY } = process.env
           github.rest.issues.createComment({
