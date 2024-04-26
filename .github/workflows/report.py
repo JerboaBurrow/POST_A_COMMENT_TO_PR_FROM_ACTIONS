@@ -22,5 +22,5 @@ output += "_"*max_size
 for entry in entries:
     pad = " "*(max_size-len(entry[0]))
     output += "\n"+entry[0]+pad+" | "+str(entry[1]) + " %"
-output += "\n_"*max_size+"\n```"
+output += "\n"+"_"*max_size+"\n```"
 print(output)
