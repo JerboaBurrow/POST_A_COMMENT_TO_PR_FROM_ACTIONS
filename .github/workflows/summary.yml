@@ -1,0 +1,28 @@
+name: Summary
+
+on:
+  pull_request:
+
+  build_test_with_coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Generate summary
+      id: summary
+      run: |
+        echo $GITHUB_ENV
+        cat $GITHUB_ENV
+        echo "SUMMARY=\"$(python3 .github/workflows/report.py)\"" >> $GITHUB_ENV
+
+    - name: Notify coverage
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '${{ env.SUMMARY }}'
+          })
