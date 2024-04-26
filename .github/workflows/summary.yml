@@ -3,7 +3,9 @@ name: Summary
 on:
   pull_request:
 
-  build_test_with_coverage:
+jobs:
+
+  summary:
     runs-on: ubuntu-latest
 
     steps:
